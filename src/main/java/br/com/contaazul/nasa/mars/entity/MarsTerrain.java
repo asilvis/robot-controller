@@ -28,4 +28,15 @@ public class MarsTerrain implements Terrain {
     public void setHeight(Integer height) {
         this.height = height;
     }
+
+    @Override
+    public Boolean isValidLocation(Integer x, Integer y) {
+        if (x < 0 || y < 0) {
+            return false;
+        } else if ( x > width || y > height) {
+            return false;
+        }
+
+        return true;
+    }
 }

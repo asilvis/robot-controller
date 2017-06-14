@@ -6,6 +6,7 @@ import br.com.contaazul.nasa.mars.entity.Terrain;
 import br.com.contaazul.nasa.mars.enums.MovingCommand;
 import br.com.contaazul.nasa.mars.enums.Orientation;
 import br.com.contaazul.nasa.mars.exception.OrientationException;
+import br.com.contaazul.nasa.mars.exception.OutOfBoundsException;
 import javafx.geometry.Pos;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,12 @@ public class MoveServiceImpl implements MoveService {
         movingCommands.forEach(mc -> {
 
             Position newPosition = getNewPosition(robot.getCurrentPosition(), mc);
-            robot.setCurrentPosition(newPosition);
+            if(robot.getTerrain().isValidLocation(newPosition.getX(), newPosition.getY())) {
+                robot.setCurrentPosition(newPosition);
+            } else {
+              throw new OutOfBoundsException("Robot is out of bounds! " + newPosition.toString());
+            }
+
         });
 
         return robot;
