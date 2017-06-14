@@ -1,6 +1,5 @@
 package br.com.contaazul.nasa.mars.controller;
 
-import com.google.common.base.Throwables;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -21,7 +20,7 @@ public class Advice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
     public ApiError exception(Exception exception, WebRequest request) {
-        return new ApiError(Throwables.getRootCause(exception).getMessage());
+        return new ApiError(exception.getMessage());
     }
 
 }
