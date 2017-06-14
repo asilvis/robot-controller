@@ -57,7 +57,7 @@ public class RobotControllerApplicationTests {
     @Test
     public void moveRightWithRepetition() throws Exception {
         move("MML", new Position(2, 0, Orientation.WEST));
-        move("MML", new Position(2, 0, Orientation.WEST));git
+        move("MML", new Position(2, 0, Orientation.WEST));
     }
 
     @Test
